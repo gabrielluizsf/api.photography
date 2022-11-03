@@ -10,9 +10,12 @@ import cors from 'cors';
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3700;
+const allowedOrigin = process.env.WEBSITE_URL;
 
 connectDatabase();
-app.use(cors());
+app.use(cors({
+    origin: `${allowedOrigin}`
+}));
 app.use(express.json());
 
 app.use("/",homeRouter);
