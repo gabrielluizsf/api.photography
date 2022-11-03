@@ -1,5 +1,5 @@
 import express from "express";
-import connectDatabase from "./api/database/db.js"
+import connectDatabase from "./api/database/conect.js"
 import dotenv from "dotenv"
 import homeRouter from "./api/routes/home.route.js"
 import userRouter from "./api/routes/user.route.js"
