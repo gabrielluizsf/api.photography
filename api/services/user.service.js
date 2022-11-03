@@ -1,44 +1,22 @@
 import User from "../models/User.js";
 
-const findByEmailUserService = (email) => User.findOne({ email: email });
+const createService = (body) => User.create(body);
+const findAllService = () => User.find();
+const findByIdService = (id) => User.findById(id);
+const updateServiceById = (
+    id,
+    name,
+    username,
+    email,
+    password,
+    avatar,
+    background
 
-const createUserSevice = (body) => User.create(body);
+) => User.findOneAndUpdate(
+    { _id: id }, 
+    {name,username,email,password,avatar,background}
+    );
 
-const findAllUserService = () => User.find();
+    
 
-const findByIdUserService = (idUser) => User.findById(idUser);
-
-const updateUserService = (
-  id,
-  name,
-  username,
-  email,
-  password,
-  avatar,
-  background
-) =>
-  User.findOneAndUpdate(
-    {
-      _id: id,
-    },
-    {
-      name,
-      username,
-      email,
-      password,
-      avatar,
-      background,
-    },
-    {
-      rawResult: true,
-    }
-  );
-
-export default {
-  findByEmailUserService,
-  createUserSevice,
-  findAllUserService,
-  findByIdUserService,
-  updateUserService,
-};
-export  {findByIdUserService};
+export default { createService, findAllService, findByIdService , updateServiceById };
