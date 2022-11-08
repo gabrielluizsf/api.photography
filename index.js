@@ -14,7 +14,9 @@ const allowedOrigin = process.env.WEBSITE_URL;
 
 connectDatabase();
 app.use(cors({
-    origin: `${allowedOrigin}`
+    origin: [`${allowedOrigin}`],
+    methods: ["GET", "POST","PATCH","DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 
