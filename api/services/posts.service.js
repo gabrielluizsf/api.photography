@@ -29,6 +29,34 @@ const updateService = (id,title,text,banner) =>
 const deleteService = (id)=>
     Post.findOneAndDelete({_id: id});
 
+const updateLikesService = (id,userId)=>
+    Post.findOneAndUpdate(
+    {_id: id,"likes.userId":{$nin: [userId]}},
+    {$push:{likes:{userId, created: new Date() }}}
+    );
+
+const deleteLikeService = (id,userId)=>
+    Post.findOneAndUpdate(
+        {_id: id,"likes.userId":{$nin: [userId]}},
+        {$pull:{likes:{userId}}}
+    );
+
+export const addingCommentsService = (id,comment,userId)=>{
+const idComment = Math.floor(Date.now()*Math.random()).toString(36);
+return Post.findOneAndUpdate(
+    {_id: id},
+    {$push:{
+        comments:{idComment,userId,comment,createdAt: new Date()}
+    }});
+}
+export const deleteCommentService = (idPost,idComment,userId)=>{
+    return Post.findOneAndUpdate(
+        {_id: idPost},
+        {$pull:{
+            comments:{idComment,userId}
+        }});
+    }
+
 export {
     createService,
     findAllService,
@@ -38,5 +66,7 @@ export {
     searchByTitleService,		
     ByUserService,
     updateService,
-    deleteService
+    updateLikesService,
+    deleteService,
+    deleteLikeService
 }
