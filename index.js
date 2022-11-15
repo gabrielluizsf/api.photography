@@ -6,7 +6,7 @@ import userRouter from "./api/routes/user.route.js"
 import authRouter from "./api/routes/auth.route.js"
 import postRouter from "./api/routes/post.route.js"
 import uploadRouter from "./api/routes/upload.route.js"
-import docRouter  from "./api/routes/swagger.route.js";
+import docRouter  from "./api/routes/swagger.route.cjs";
 import cors from 'cors';
 dotenv.config();
 const app = express();
