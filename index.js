@@ -6,6 +6,7 @@ import userRouter from "./api/routes/user.route.js"
 import authRouter from "./api/routes/auth.route.js"
 import postRouter from "./api/routes/post.route.js"
 import uploadRouter from "./api/routes/upload.route.js"
+import docRouter  from "./api/routes/swagger.route.js";
 import cors from 'cors';
 dotenv.config();
 const app = express();
@@ -25,6 +26,7 @@ app.use("/users",userRouter);
 app.use("/auth",authRouter);
 app.use("/posts",postRouter);
 app.use("/upload",uploadRouter);
+app.use("/doc",docRouter);
 
 
 app.listen(port,()=>console.log(`[Server Online]: PORT:${port}`));
